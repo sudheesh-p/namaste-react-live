@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { IMG_CDN_URL } from "../Constants";
 const Title = () => (
   <a href="/">
@@ -15,8 +16,8 @@ const Header = () => {
       <Title />
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About</li>
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/about'>About</Link></li>
           <li>Contact</li>
           <li>Cart</li>
         </ul>
