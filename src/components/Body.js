@@ -1,34 +1,15 @@
 import RestaurantCard from "./RestaurantCard";
-import { restaurantList } from "../Constants";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-
-function filterData(searchText, restaurants) {
-  const filterData = restaurants.filter((item) =>
-    item?.data?.name?.toLowercase()?.includes(searchText.toLowercase())
-  );
-  return filterData;
-}
+import {filterData} from '../utils/helper'
+import useRestaurantList from "../utils/useRestaurantList";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
-  const[allRestaurants,setAllRestaurants] = useState("");
-  const [filteredRestaurants, setFilteredRestaurants] = useState(restaurantList);
-
-  useEffect(() => {
-    getRestaurants();
-  }, []);
-
-  async function getRestaurants() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards)
-    setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-  }
-
+  const {allRestaurants,filteredRestaurants,setFilteredRestaurants} = useRestaurantList();
+ 
+  
   return allRestaurants.length === 0? (<Shimmer/>) : (
     <>
       <div>

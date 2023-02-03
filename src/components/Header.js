@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
-import { IMG_CDN_URL } from "../Constants";
+import { ICON_CDN_URL } from "../Constants";
+import useOnline from "../utils/useOnline";
 const Title = () => (
   <a href="/">
     <img
       className="logo"
       alt="logo"
-      src="https://yt3.ggpht.com/ytc/AMLnZu_EC-ECXAxRAixWGEfMsE1rdSoetBHyxmLNdtCB=s900-c-k-c0x00ffffff-no-rj"
+      src={ICON_CDN_URL}
     />
   </a>
 );
 
 const Header = () => {
+  const isOnline = useOnline();
   return (
     <div className="header">
       <Title />
@@ -19,9 +21,10 @@ const Header = () => {
           <li><Link to='/'>Home</Link></li>
           <li><Link to='/about'>About</Link></li>
           <li>Contact</li>
-          <li>Cart</li>
+          <li><Link to='/instamart'>Cart</Link></li>
         </ul>
       </div>
+      <h1>{isOnline ? "🟢" : "🔴"}</h1>
     </div>
   );
 };
