@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ICON_CDN_URL } from "../Constants";
 import useOnline from "../utils/useOnline";
+import UserContext from "../utils/userContext";
+import userContext from "../utils/userContext"
+
 const Title = () => (
   <a href="/">
     <img
@@ -13,6 +17,7 @@ const Title = () => (
 
 const Header = () => {
   const isOnline = useOnline();
+  const {user} = useContext(UserContext);
   return (
     <div className="flex space-x-2 justify-between bg-pink-50 shadow-lg">
       <Title />
@@ -25,6 +30,7 @@ const Header = () => {
         </ul>
       </div>
       <h1>{isOnline ? "🟢" : "🔴"}</h1>
+      <h1 className="p-10 font-bold text-red-900">{user.name}</h1>
     </div>
   );
 };
