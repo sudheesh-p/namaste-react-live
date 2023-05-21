@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { ICON_CDN_URL } from "../Constants";
+import Logo from "../assests/img/logo.jpg";
 import store from "../utils/store";
 import useOnline from "../utils/useOnline";
 import UserContext from "../utils/userContext";
@@ -9,9 +9,10 @@ import UserContext from "../utils/userContext";
 const Title = () => (
   <a href="/">
     <img
+      data-testid="logo"
       className="h-24 p-2"
       alt="logo"
-      src={ICON_CDN_URL}
+      src={Logo}
     />
   </a>
 );
@@ -28,10 +29,10 @@ const Header = () => {
           <li className="px-2"><Link to='/'>Home</Link></li>
           <li className="px-2"><Link to='/about'>About</Link></li>
           <li className="px-2">Contact</li>
-          <li className="px-2"><Link to='/instamart'>Cart- {cartItems.length} items</Link></li>
+          <li className="px-2" ><Link to='/instamart' data-testid="cart" >Cart- {cartItems.length} items</Link></li>
         </ul>
       </div>
-      <h1>{isOnline ? "🟢" : "🔴"}</h1>
+      <h1 data-testid="online-status">{isOnline ? "🟢" : "🔴"}</h1>
       <h1 className="p-10 font-bold text-red-900">{user.name}</h1>
     </div>
   );

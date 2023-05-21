@@ -21,6 +21,7 @@ const Body = () => {
           onChange={(e) => {
             setSearchText(e.target.value);
           }}
+          data-testid = "search-input"
         />
         <button
           className="p-2 m-2 bg-purple-900 hover:bg-gray-500 text-white rounded-md"
@@ -28,6 +29,7 @@ const Body = () => {
             const data = filterData(searchText, allRestaurants);
             setFilteredRestaurants(data);
           }}
+          data-testid = "search-btn"
         >
           Search
         </button>
@@ -38,7 +40,7 @@ const Body = () => {
           })
         }/>
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap" data-testid="res-list">
         {filteredRestaurants.map((restaurant) => {
           return (
             <Link to={`/restaurant/${restaurant.data.id}`} key={restaurant.data.id}>

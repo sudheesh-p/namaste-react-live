@@ -18,7 +18,7 @@ const RestaurantMenu = () => {
     // <Shimmer />
     <div>
         <button className="p-2 m-5 bg-green-100"
-          onClick={() => handleAddItem()}
+          onClick={() => handleAddItem()} data-testid='add-btn'
         >Add Item</button>
       </div>
   ) : (
@@ -35,7 +35,7 @@ const RestaurantMenu = () => {
       
       <div>
         <h1>Menu</h1>
-        <ul>
+        <ul data-testid="menu">
           {Object?.values(restaurant?.menu?.items).map((item) => (
             <li key={item.id}>{item.name}</li>
           ))}
